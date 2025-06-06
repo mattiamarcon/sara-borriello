@@ -38,10 +38,10 @@ export default function Navbar() {
   }, [lastScrollY])
 
   const navLinks = [
-    { href: "#chi-sono", label: "Chi Sono" },
-    { href: "#servizi", label: "Servizi" },
-    { href: "#recensioni", label: "Recensioni" },
-    { href: "#contatti", label: "Contatti" },
+    { href: "/#chi-sono", label: "Chi sono" },
+    { href: "/#servizi", label: "Servizi" },
+    { href: "/recensioni", label: "Recensioni" },
+    { href: "/ems", label: "EMS" },
   ]
 
   // Funzione per chiudere la sidebar
@@ -57,9 +57,9 @@ export default function Navbar() {
         isVisible ? "translate-y-0" : "-translate-y-full",
       )}
     >
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <Link href="/" className="flex items-center">
-          <Image src="/logo.svg" alt="Sara Personal Training" width={50} height={50} className="h-12 w-auto" />
+      <div className="container mx-auto px-4 py-3 flex items-center justify-between ">
+        <Link href="/" className="flex items-center ">
+          <Image src="/logo.svg" alt="Sara Personal Training" width={50} height={50} className="h-12 w-auto  " />
           <span className="ml-3 text-2xl font-semibold text-first hidden sm:inline-block">Sara Borriello Trainer</span>
         </Link>
 

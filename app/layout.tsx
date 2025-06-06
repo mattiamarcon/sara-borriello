@@ -1,24 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Merriweather } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { Toaster } from "@/components/ui/sonner"
+import FloatingWhatsApp from "./components/floating-whatsapp";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "Sara Boriello Trainer",
-  description: "Sara Boriello Trainer",
-};
+const merryweather=Merriweather({
+  variable: "--font-merryweather",
+  subsets: ["cyrillic"],
+  weight: "300"
+})
 
 export default function RootLayout({
   children,
@@ -28,11 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${merryweather.className} antialiased`}
       >
         <Navbar />
         {children}
         <Toaster />
+        <FloatingWhatsApp />
         <Footer />
       </body>
     </html>

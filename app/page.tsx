@@ -1,8 +1,11 @@
 import Hero from "./components/Hero";
 import { CarouselDemo } from "./components/CarouselServizi";
 import ChiSono from "./components/ChiSono";
-import Contattami from "./components/Contattami";
+import Mappa from "./components/Mappa";
 import CardStackSection from "./components/card-stack-section";
+import WhatsAppContactSection from "./components/whatsapp-contact-section";
+import ReviewLink from "./components/ReviewLink";
+import EMScta from "./components/EMScta";
 
 export default function Home() {
   return (
@@ -14,7 +17,10 @@ export default function Home() {
         <CarouselDemo />
       </div>
       <CardStackSection />
-      <Contattami />
+      <ReviewLink />
+      <EMScta />
+      <WhatsAppContactSection />
+      <Mappa />
     </>
   );
 }

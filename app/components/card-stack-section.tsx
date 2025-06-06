@@ -4,54 +4,44 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { ChevronRight, Quote, Pause, Play } from "lucide-react"
+import { createClient } from "@/utils/supabase/client"
 
 interface CardProps {
   id: number
   name: string
   role: string
   content: string
-  image?: string
 }
 
 export default function CardStackAdvanced() {
+
+  const db=createClient();
+
   const [cards, setCards] = useState<CardProps[]>([])
   const [autoplay, setAutoplay] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
+  const [testimonials,setTestimonials]=useState<CardProps[]>([]);
 
-  const testimonials: CardProps[] = [
-    {
-      id: 1,
-      name: "Martina C.",
-      role: "Cliente da 1 anno",
-      content:
-        "Ho provato molti programmi di allenamento in passato, ma nessuno mi ha dato risultati come questo. Sara ha creato un piano personalizzato che si adattava perfettamente alle mie esigenze e al mio stile di vita.",
-      image: "/rec1.jpg",
-    },
-    {
-      id: 2,
-      name: "Roberto G.",
-      role: "Cliente da 6 mesi",
-      content:
-        "L'allenamento EMS con Sara è stato rivoluzionario per me. In poco tempo ho visto risultati incredibili e mi sento più forte e tonico che mai. Consiglio vivamente questo approccio a chi ha poco tempo ma vuole risultati concreti.",
-      image: "/rec2.jpeg",
-    },
-    {
-      id: 3,
-      name: "Claudia T.",
-      role: "Cliente da 2 anni",
-      content:
-        "Sara non è solo una personal trainer, ma una vera coach che ti supporta in ogni aspetto del tuo percorso di fitness. Professionale, preparata e sempre motivante. Grazie a lei ho raggiunto obiettivi che non avrei mai immaginato.",
-      image: "/rec3.jpg",
-    },
-    {
-      id: 4,
-      name: "Marco B.",
-      role: "Cliente da 3 mesi",
-      content:
-        "Le schede personalizzate di Sara sono dettagliate e perfettamente adattate alle mie esigenze. Anche allenandomi da solo, sento di avere una guida esperta che mi segue passo dopo passo nel mio percorso di miglioramento.",
-      image: "/rec4.jpeg",
-    },
-  ]
+  useEffect(() => {
+  async function getRecensioni() {
+    const { data, error } = await db.from("Recensioni").select("*");
+
+    if (data) {
+      const nuoveTestimonianze = data.map(rec => ({
+        id: rec.id,
+        name: rec.nome + " " + rec.cognome,
+        role: rec.clienteDa,
+        content: rec.descrizione,
+      }));
+
+      setTestimonials(nuoveTestimonianze);
+    }
+  }
+
+  getRecensioni();
+}, []);
+
+
 
   // Controlla se il dispositivo è mobile
   useEffect(() => {
@@ -73,7 +63,7 @@ export default function CardStackAdvanced() {
     // Inizializza lo stack con le prime 3 carte (o 2 su mobile)
     const initialCards = isMobile ? testimonials.slice(0, 2) : testimonials.slice(0, 3)
     setCards(initialCards)
-  }, [isMobile])
+  }, [testimonials,isMobile])
 
   const rotateCards = () => {
     setCards((prevCards) => {
@@ -111,13 +101,7 @@ export default function CardStackAdvanced() {
     <section id="recensioni" className="relative w-full h-screen overflow-hidden">
       {/* Video di background */}
       <div className="absolute inset-0 w-full h-full">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
+        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover">
           <source src="/bgVideo.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/60"></div>
@@ -180,22 +164,8 @@ export default function CardStackAdvanced() {
                     onClick={isTop ? rotateCards : undefined}
                   >
                     <div className="bg-white rounded-xl shadow-xl overflow-hidden">
-                      <div className="grid grid-cols-1 md:grid-cols-3">
-                        {card.image && !isMobile && (
-                          <div className="relative h-64 md:h-auto">
-                            <div
-                              className="absolute inset-0 bg-center bg-cover"
-                              style={{ backgroundImage: `url(${card.image})` }}
-                            ></div>
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                          </div>
-                        )}
-                        <div
-                          className={cn(
-                            "p-6 md:p-8 flex flex-col justify-between",
-                            card.image && !isMobile ? "md:col-span-2" : "",
-                          )}
-                        >
+                      <div className="grid grid-cols-1">
+                        <div className="p-6 md:p-8 flex flex-col justify-between">
                           <div>
                             <div className="flex items-start mb-4">
                               <Quote className="h-6 w-6 md:h-8 md:w-8 text-primary-light mr-2 flex-shrink-0 rotate-180" />
