@@ -1,7 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Zap, Bluetooth, Shirt, Shield, Clock, Target, Settings, Users } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
@@ -65,41 +64,6 @@ const ProductPage = () => {
   return (
     <>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-first/10 to-first/10">
-        {/* Hero Section */}
-        {/* <section className="relative overflow-hidden bg-gradient-to-r from-first via-first/90 to-first text-white pt-32">
-          <div className="absolute inset-0 bg-black/20"></div>
-          <div className="relative container mx-auto px-6 py-20">
-            <div className="max-w-4xl mx-auto text-center">
-              <Badge className="mb-6 bg-white/20 text-white hover:bg-white/30 text-lg px-6 py-2">
-                Tecnologia EMS Avanzata
-              </Badge>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r text-white bg-clip-text ">
-                I-Motion EMS
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 text-white leading-relaxed">
-                L'avanguardia dell'allenamento muscolare per risultati rapidi e tangibili
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href={"#info"}
-                  className="bg-white text-first cursor-pointer items-center justify-center inline-flex px-7 text-lg font-semibold rounded-md"
-                >
-                  Scopri di Più
-                </Link>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg"
-                  onClick={openWhatsApp}
-                >
-                  Contattami
-                </Button>
-              </div>
-            </div>
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-gray-50 to-transparent"></div>
-        </section> */}
-
 
         <section className="relative w-full h-screen overflow-hidden">
       {/* Video di sfondo */}

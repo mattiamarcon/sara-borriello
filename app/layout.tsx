@@ -12,6 +12,11 @@ const merryweather=Merriweather({
   weight: "300"
 })
 
+export const metadata: Metadata = {
+  title: "Sara Borriello",
+  description: "Sara Borriello trainer web site",
+} 
+
 export default function RootLayout({
   children,
 }: Readonly<{

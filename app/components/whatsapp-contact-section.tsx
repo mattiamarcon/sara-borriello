@@ -1,5 +1,5 @@
 "use client"
-import { MessageCircle, Clock, CheckCircle, Zap, Phone } from "lucide-react"
+import { MessageCircle, Clock, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function WhatsAppContactSection() {

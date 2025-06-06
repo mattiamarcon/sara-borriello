@@ -24,7 +24,7 @@ export default function CardStackAdvanced() {
 
   useEffect(() => {
   async function getRecensioni() {
-    const { data, error } = await db.from("Recensioni").select("*");
+    const { data } = await db.from("Recensioni").select("*");
 
     if (data) {
       const nuoveTestimonianze = data.map(rec => ({

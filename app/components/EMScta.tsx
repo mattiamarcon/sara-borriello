@@ -1,6 +1,7 @@
 "use client";
 
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+import Image from "next/image";
 
 export default function EMScta() {
   return (
@@ -17,7 +18,7 @@ export default function EMScta() {
           </>
         }
       >
-        <img
+        <Image
           src={`hero.jpeg`}
           alt="hero"
           height={720}
