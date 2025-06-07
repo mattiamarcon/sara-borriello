@@ -10,11 +10,19 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent,  SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { AlertCircle } from "lucide-react"
+import { AlertCircle, Loader2 } from "lucide-react"
 import { inserimentoRecensione, recensione } from "../action"
 import { toast } from "sonner"
+import { useActionState } from "react"
+import { useTransition } from "react"
 
 export default function Component() {
+
+  const [state, formAction] = useActionState(inserimentoRecensione, { message: "" })
+  const [isPending, startTransition] = useTransition()
+
+  console.log(state.message)
+
   const [formData, setFormData] = useState({
     nome: "",
     cognome: "",
@@ -34,8 +42,8 @@ export default function Component() {
     if (!formData.email.trim()) newErrors.push("Email è obbligatoria")
     if (!formData.email.includes("@") && formData.email.trim()) newErrors.push("Email non valida")
     if (!formData.descrizione.trim()) newErrors.push("Descrizione è obbligatoria")
-    if (!formData.clienteDa) newErrors.push("Tipo recensione è obbligatorio")
-    if (!formData.consenso) newErrors.push("È necessario accettare il consenso per procedere")
+    if (!formData.clienteDa) newErrors.push("Durata è obbligatorio")
+    if (!formData.consenso) newErrors.push("È necessario accettare il trattamentod dati per procedere")
 
     setErrors(newErrors)
     return newErrors.length === 0
@@ -52,10 +60,13 @@ export default function Component() {
         descrizione:formData.descrizione,
         clienteDa:formData.clienteDa,
       };
-      inserimentoRecensione(recensione)
-      toast("Grazie! La tua recensione è stata inviata con successo.", {
-        duration: 3000,
+      startTransition(() => {
+        formAction(recensione)
       })
+      //inserimentoRecensione(recensione)
+       toast.success("Successo!", {
+          description: "Recensione inserita con successo",
+        })
 
       setFormData({
         nome: "",
@@ -81,12 +92,8 @@ export default function Component() {
   }
 
   return (
-    <div className="min-h-screen bg-whiteLogo py-12 px-4 pt-20">
-      <div className="max-w-2xl mx-auto">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Lascia una Recensione</h1>
-          <p className="text-gray-600">Condividi la tua esperienza con noi. Tutti i campi sono obbligatori.</p>
-        </div>
+    <div className="  px-4 pt-10">
+      <div className="max-w-7xl mx-auto">
 
         <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-lg shadow-sm border">
           {errors.length > 0 && (
@@ -204,7 +211,14 @@ export default function Component() {
           </div>
 
           <Button type="submit" className="w-full bg-first hover:bg-second text-white py-3 text-lg font-medium cursor-pointer">
-            Invia Recensione
+            {isPending ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Inserimento in corso...
+              </>
+            ) : (
+              "Inserisci recensioni"
+            )}
           </Button>
         </form>
       </div>

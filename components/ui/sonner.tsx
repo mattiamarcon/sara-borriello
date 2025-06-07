@@ -7,7 +7,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
 
   return (
     <Sonner
-      className="toaster group z-[100] bg-white text-black text-xl"
+      className="toaster group z-[100]"
       {...props}
     />
   )

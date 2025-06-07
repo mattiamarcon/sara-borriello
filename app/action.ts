@@ -9,10 +9,18 @@ export interface recensione{
     clienteDa:string,
 }
 
-export async function inserimentoRecensione(rec:recensione){
+export type FormState={
+  message?:string
+}
+
+export async function inserimentoRecensione(state:FormState,rec:recensione){
     const db=createClient();
 
     const {error}= await db.from("Recensioni").insert(rec);
 
-    console.log(error)
+    if (error) {
+        return {message:"Errore imprevisto"}
+    }
+
+    return {message:"Inserimento avvenuto con successo"}
 }

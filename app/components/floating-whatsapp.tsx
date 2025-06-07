@@ -9,7 +9,7 @@ export default function FloatingWhatsApp() {
   const [showTooltip, setShowTooltip] = useState(false)
 
   // Numero WhatsApp (sostituisci con il numero reale)
-  const whatsappNumber = "3409539298"
+  const whatsappNumber = "+393409539298"
 
   useEffect(() => {
     // Mostra il pulsante dopo 3 secondi

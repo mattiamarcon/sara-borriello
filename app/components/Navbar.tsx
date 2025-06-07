@@ -38,10 +38,10 @@ export default function Navbar() {
   }, [lastScrollY])
 
   const navLinks = [
-    { href: "/#chi-sono", label: "Chi sono" },
-    { href: "/#servizi", label: "Servizi" },
-    { href: "/recensioni", label: "Recensioni" },
-    { href: "/ems", label: "EMS" },
+    { href: "#chi-sono", label: "Chi sono" },
+    { href: "#servizi", label: "Servizi" },
+    { href: "#recensioni", label: "Recensioni" },
+    { href: "#ems", label: "EMS" },
   ]
 
   // Funzione per chiudere la sidebar

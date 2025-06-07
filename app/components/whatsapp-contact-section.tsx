@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 export default function WhatsAppContactSection() {
 
   // Numero WhatsApp (sostituisci con il numero reale)
-  const whatsappNumber = "3409539298" // Formato: prefisso paese + numero senza +
+  const whatsappNumber = "+393409539298" // Formato: prefisso paese + numero senza +
 
  
 
@@ -44,7 +44,7 @@ export default function WhatsAppContactSection() {
         </div>
 
         {/* Vantaggi di WhatsApp */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <div className="text-center p-6">
             <div className="bg-green-100 dark:bg-green-900 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
               <Clock className="h-8 w-8 text-green-600 dark:text-green-400" />

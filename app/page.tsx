@@ -5,7 +5,7 @@ import Mappa from "./components/Mappa";
 import CardStackSection from "./components/card-stack-section";
 import WhatsAppContactSection from "./components/whatsapp-contact-section";
 import ReviewLink from "./components/ReviewLink";
-import EMScta from "./components/EMScta";
+import EmsPage from "./components/EMSpage";
 
 export default function Home() {
   return (
@@ -17,8 +17,8 @@ export default function Home() {
         <CarouselDemo />
       </div>
       <CardStackSection />
+      <EmsPage />
       <ReviewLink />
-      <EMScta />
       <WhatsAppContactSection />
       <Mappa />
     </>

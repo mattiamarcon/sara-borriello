@@ -29,7 +29,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
-        <Toaster />
+        <Toaster position="top-right" richColors={true} />
         <FloatingWhatsApp />
         <Footer />
       </body>
