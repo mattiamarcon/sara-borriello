@@ -30,10 +30,6 @@ const EmsPage = () => {
     },
   ]
 
-  const whatsappNumber = "+393409539298"
-
-
-
   return (
     <>
       <div id="ems" className="min-h-screen bg-gradient-to-br from-gray-50 via-first/10 to-first/10">
