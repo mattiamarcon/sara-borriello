@@ -23,12 +23,12 @@ export default function WhatsAppContactSection() {
   return (
     <section
       id="contatti"
-      className="py-10 bg-gradient-to-br from-green-50 to-white dark:from-gray-900 dark:to-gray-800"
+      className="py-10 bg-gradient-to-br from-green-50 to-white "
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-primary-dark mb-4">Contattami su WhatsApp</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">
+          <p className="text-lg text-gray-600  max-w-2xl mx-auto mb-8">
             Per una comunicazione rapida e diretta, preferisco WhatsApp. Riceverai risposta in tempi brevissimi!
           </p>
 
@@ -46,20 +46,20 @@ export default function WhatsAppContactSection() {
         {/* Vantaggi di WhatsApp */}
         <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <div className="text-center p-6">
-            <div className="bg-green-100 dark:bg-green-900 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-              <Clock className="h-8 w-8 text-green-600 dark:text-green-400" />
+            <div className="bg-green-100  rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <Clock className="h-8 w-8 text-green-600 " />
             </div>
             <h3 className="font-semibold text-lg mb-2">Risposta Rapida</h3>
           </div>
           <div className="text-center p-6">
-            <div className="bg-green-100 dark:bg-green-900 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-              <MessageCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
+            <div className="bg-green-100  rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <MessageCircle className="h-8 w-8 text-green-600 " />
             </div>
             <h3 className="font-semibold text-lg mb-2">Comunicazione Diretta</h3>
           </div>
           <div className="text-center p-6">
-            <div className="bg-green-100 dark:bg-green-900 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-              <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
+            <div className="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <CheckCircle className="h-8 w-8 text-green-600 " />
             </div>
             <h3 className="font-semibold text-lg mb-2">Facile e Veloce</h3>
           </div>
