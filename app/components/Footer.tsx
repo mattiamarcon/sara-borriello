@@ -65,7 +65,7 @@ export default function Footer() {
               <p>Via Antonio Durante, 11</p>
               <p>33080, Prata di Pordenone</p>
               <p>Tel: +39 3409539298</p>
-              <p>Email: info@sarapersonaltraining.it</p>
+              <p>Email: sara.borriello2405@gmail.com</p>
             </address>
           </div>
         </div>
