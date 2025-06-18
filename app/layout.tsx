@@ -33,7 +33,7 @@ export default function RootLayout({
         <Toaster position="top-right" richColors={true} />
         <FloatingWhatsApp />
         <Footer />
-        <GoogleAnalytics gaId="AW-17188842612" />
+        <GoogleAnalytics gaId="G-7ES4TK6D3T" />
       </body>
     </html>
   );
