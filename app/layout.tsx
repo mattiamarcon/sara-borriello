@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { Toaster } from "@/components/ui/sonner"
 import FloatingWhatsApp from "./components/floating-whatsapp";
-import { Analytics } from "@vercel/analytics/next"
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const merryweather=Merriweather({
   variable: "--font-merryweather",
@@ -33,7 +33,7 @@ export default function RootLayout({
         <Toaster position="top-right" richColors={true} />
         <FloatingWhatsApp />
         <Footer />
-        <Analytics />
+        <GoogleAnalytics gaId="AW-17188842612" />
       </body>
     </html>
   );
