@@ -25,6 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>     
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="5f8d1241-313b-45f0-b625-5107de417c2f"></script>
+      </head>
       <body
         className={`${merryweather.className} antialiased`}
       >
