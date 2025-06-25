@@ -21,6 +21,8 @@ export default function Component() {
   const [state, formAction] = useActionState(inserimentoRecensione, { message: "" })
   const [isPending, startTransition] = useTransition()
 
+  console.log(state)
+
   const [formData, setFormData] = useState({
     nome: "",
     cognome: "",

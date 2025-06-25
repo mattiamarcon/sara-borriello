@@ -50,6 +50,7 @@ export default function Navbar({isLogged}:{isLogged:boolean}) {
   }, [lastScrollY])
 
   async function signOut(){
+    setIsOpen(false)
     const { error } = await supabase.auth.signOut();
 
     if(!error){
@@ -149,7 +150,7 @@ export default function Navbar({isLogged}:{isLogged:boolean}) {
                     ))}
                   </>
                 }
-                {isLogged ? <button className="text-lg ml-3  text-black w-fit h-fit" onClick={()=>{signOut(), setIsOpen(false)}}>Log out</button> : <Link href={"/login"} onClick={()=>setIsOpen(false)} className="text-lg  text-black ml-3">Accedi</Link>}
+                {isLogged ? <button className="text-lg ml-3  text-black w-fit h-fit" onClick={()=>{signOut()}}>Log out</button> : <Link href={"/login"} onClick={()=>setIsOpen(false)} className="text-lg  text-black ml-3">Accedi</Link>}
               </nav>
             </div>
           </SheetContent>
