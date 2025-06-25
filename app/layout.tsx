@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Merriweather } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import { Toaster } from "@/components/ui/sonner"
-import FloatingWhatsApp from "./components/floating-whatsapp";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import Navbar from "./components/Navbar";
+import { createSupabaseServer } from "@/utils/supabase/server"
+
 
 const merryweather=Merriweather({
   variable: "--font-merryweather",
@@ -18,25 +17,27 @@ export const metadata: Metadata = {
   description: "Sara Borriello trainer web site",
 } 
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const supabase = await createSupabaseServer()
+
+  const {data} = await supabase.auth.getUser();
+
   return (
     <html lang="en">
       <head>     
-        <script defer src="https://cloud.umami.is/script.js" data-website-id="5f8d1241-313b-45f0-b625-5107de417c2f"></script>
+        <script defer src="https://cloud.umami.is/script.js" data-website-id={process.env.UMAMI_API_KEY} ></script>
       </head>
       <body
         className={`${merryweather.className} antialiased`}
       >
-        <Navbar />
+        <Navbar isLogged={!!data.user} />
         {children}
         <Toaster position="top-right" richColors={true} />
-        <FloatingWhatsApp />
-        <Footer />
-        <GoogleAnalytics gaId="G-7ES4TK6D3T" />
       </body>
     </html>
   );

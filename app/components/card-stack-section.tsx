@@ -171,10 +171,11 @@ export default function CardStackAdvanced() {
                               <Quote className="h-6 w-6 md:h-8 md:w-8 text-primary-light mr-2 flex-shrink-0 rotate-180" />
                               <p className="text-gray-700 italic text-sm md:text-base">
                                 {isMobile
-                                  ? card.content.length > 120
-                                    ? card.content.substring(0, 120) + "..."
+                                  ? card.content.length > 300
+                                    ? card.content.substring(0, 300) + "..."
                                     : card.content
                                   : card.content}
+                                 
                               </p>
                             </div>
                           </div>

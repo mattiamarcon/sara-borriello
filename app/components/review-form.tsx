@@ -10,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent,  SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { AlertCircle, Loader2 } from "lucide-react"
+import { AlertCircle, Loader2 } from 'lucide-react'
 import { inserimentoRecensione, recensione } from "../action"
 import { toast } from "sonner"
 import { useActionState } from "react"
@@ -20,8 +20,6 @@ export default function Component() {
 
   const [state, formAction] = useActionState(inserimentoRecensione, { message: "" })
   const [isPending, startTransition] = useTransition()
-
-  console.log(state.message)
 
   const [formData, setFormData] = useState({
     nome: "",
@@ -42,6 +40,7 @@ export default function Component() {
     if (!formData.email.trim()) newErrors.push("Email è obbligatoria")
     if (!formData.email.includes("@") && formData.email.trim()) newErrors.push("Email non valida")
     if (!formData.descrizione.trim()) newErrors.push("Descrizione è obbligatoria")
+    if (formData.descrizione.length > 300) newErrors.push("La descrizione non può superare i 300 caratteri")
     if (!formData.clienteDa) newErrors.push("Durata è obbligatorio")
     if (!formData.consenso) newErrors.push("È necessario accettare il trattamentod dati per procedere")
 
@@ -185,12 +184,26 @@ export default function Component() {
             <Textarea
               id="descrizione"
               value={formData.descrizione}
-              onChange={(e) => handleInputChange("descrizione", e.target.value)}
+              onChange={(e) => {
+                if (e.target.value.length <= 300) {
+                  handleInputChange("descrizione", e.target.value)
+                }
+              }}
               placeholder="Descrivi la tua esperienza..."
               className={`min-h-[120px] ${
                 errors.some((e) => e.includes("Descrizione")) ? "border-red-500" : "border-gray-300"
               } focus:border-first focus:ring-first`}
             />
+            <div className="flex justify-between items-center">
+              <div className="text-xs text-gray-500">
+                {formData.descrizione.length > 300 && (
+                  <span className="text-red-500">Limite di caratteri superato</span>
+                )}
+              </div>
+              <div className={`text-xs ${formData.descrizione.length > 300 ? 'text-red-500' : 'text-gray-500'}`}>
+                {formData.descrizione.length}/300 caratteri
+              </div>
+            </div>
           </div>
 
           <div className="flex items-start space-x-3">

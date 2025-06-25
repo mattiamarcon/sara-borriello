@@ -6,12 +6,24 @@ import Image from "next/image"
 import { Menu } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
+import { createClient } from '@/utils/supabase/client'
+import { useRouter } from "next/navigation"
 
-export default function Navbar() {
+export default function Navbar({isLogged}:{isLogged:boolean}) {
+   const supabase= createClient();
+
   const [isScrolled, setIsScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
   const [isOpen, setIsOpen] = useState(false)
+
+  const router = useRouter()
+
+  const [logged,setLogged]=useState(isLogged)
+
+  useEffect(()=>{
+    setLogged(isLogged)
+  },[isLogged])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,11 +49,26 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [lastScrollY])
 
+  async function signOut(){
+    const { error } = await supabase.auth.signOut();
+
+    if(!error){
+      setLogged(false);
+    }
+    
+    router.push("/");
+    router.refresh(); 
+}
+
   const navLinks = [
     { href: "#chi-sono", label: "Chi sono" },
     { href: "#servizi", label: "Servizi" },
     { href: "#recensioni", label: "Recensioni" },
     { href: "#ems", label: "EMS" },
+  ]
+
+  const hideNavigation=[
+    {label: "Dashboard", href:"/dashboard"},
   ]
 
   // Funzione per chiudere la sidebar
@@ -70,6 +97,16 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
+          {logged && 
+            <>
+              {hideNavigation.map((link) => (
+                <Link key={link.href} href={link.href} className="text-xl font-medium text-white">
+                  {link.label}
+                </Link>
+              ))}
+            </>
+          }
+          {isLogged ? <button className="text-lg font-normal text-white" onClick={()=>{signOut()}}>Log out</button> : <Link href={"/login"} className="text-lg font-normal text-white">Accedi</Link>}
         </nav>
 
         {/* Mobile Navigation */}
@@ -98,6 +135,21 @@ export default function Navbar() {
                     {link.label}
                   </Link>
                 ))}
+                {logged &&
+                  <>
+                    {hideNavigation.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="text-base font-medium text-black ml-3"
+                        onClick={handleLinkClick}
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </>
+                }
+                {isLogged ? <button className="text-lg ml-3  text-black w-fit h-fit" onClick={()=>{signOut(), setIsOpen(false)}}>Log out</button> : <Link href={"/login"} onClick={()=>setIsOpen(false)} className="text-lg  text-black ml-3">Accedi</Link>}
               </nav>
             </div>
           </SheetContent>
