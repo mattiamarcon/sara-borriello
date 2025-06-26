@@ -70,7 +70,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-200 pt-8">
+        <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-center">
+          <p className="text-center text-gray-500  text-sm">
+            P.IVA: IT05214160268
+          </p>
           <p className="text-center text-gray-500  text-sm">
             &copy; {new Date().getFullYear()} Sara Borello Trainer. Tutti i diritti riservati.
           </p>
