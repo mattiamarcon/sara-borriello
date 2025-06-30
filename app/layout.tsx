@@ -30,7 +30,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>     
-        <script defer src="https://cloud.umami.is/script.js" data-website-id={process.env.UMAMI_API_KEY} ></script>
+        <script defer src="https://cloud.umami.is/script.js" data-website-id={process.env.UMAMI_WEBSITE_ID} ></script>
       </head>
       <body
         className={`${merryweather.className} antialiased`}
